@@ -53,7 +53,7 @@ elif tabs == "💬 MedCoderBot":
         st.session_state.messages.append({"role": "user", "content": prompt})
         st.chat_message("user").write(prompt)
         
-        prompt_text = f"SYSTEM: You are a medical coder code based on the ICD 10 system use the uploaded file\nUSER: {prompt}"
+        prompt_text = f"SYSTEM: You are a medical coder code based on the ICD 10 system with achi use the uploaded file\nUSER: {prompt}"
         response = model.generate_content(prompt_text).text
         st.session_state.messages.append({"role": "assistant", "content": response})
         st.chat_message("assistant").write(response)
