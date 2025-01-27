@@ -2,7 +2,6 @@
 
 import streamlit as st
 import google.generativeai as genai
-from pypdf import PdfReader
 from gtts import gTTS
 from io import BytesIO
 import textwrap
