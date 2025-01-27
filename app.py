@@ -6,6 +6,8 @@ from gtts import gTTS
 from io import BytesIO
 import textwrap
 
+st.set_page_config(page_title='ChatGPT-like Chatbot', page_icon=':robot_face:', layout='wide')
+
 
 # Initialize Google Gemini model
 model = genai.GenerativeModel("gemini-1.5-flash-latest")
@@ -28,6 +30,7 @@ if tabs == "🏠 Home":
     st.write("""
         Welcome to 💬 MedCoderBot!
         just upload the pateint's file and I'll give you the medical code to it!!
+       
         Select a tab from the sidebar to get started!
     """)
 # Chatbot Tab
