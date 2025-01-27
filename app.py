@@ -1,12 +1,4 @@
 import streamlit as st
-import os
-
-# Placeholder for Gemini API client import
-# from gemini_api import GeminiClient
-
-# Initialize Gemini API client (replace with actual initialization)
-# gemini_api_key = os.getenv('GEMINI_API_KEY')
-# gemini_client = GeminiClient(api_key=gemini_api_key)
 
 # Streamlit app configuration
 st.set_page_config(page_title='ChatGPT-like Chatbot', page_icon=':robot_face:', layout='wide')
@@ -38,19 +30,23 @@ st.markdown("""
 
 st.markdown("""
 Welcome to your personal chatbot! This interface lets you have conversations similar to ChatGPT.
-You can also upload files using the sidebar for the bot to reference.
+You can upload files for the bot to reference and provide your API passkey in the sidebar.
 """)
 
-# Sidebar for file upload
-st.sidebar.header("📁 File Upload")
-uploaded_file = st.sidebar.file_uploader("Upload a file (optional)", type=["txt", "pdf", "docx"])
+# Sidebar for API passkey input
+st.sidebar.header("🔑 Gemini API Passkey")
+api_passkey = st.sidebar.text_input("Enter your Gemini API passkey", type="password")
+
+# Main section for file upload
+st.header("📁 Upload Files")
+uploaded_file = st.file_uploader("Upload a file (optional)", type=["txt", "pdf", "docx"])
 
 # Process uploaded file
 file_data = None
 if uploaded_file is not None:
     file_data = uploaded_file.read()
-    st.sidebar.success("File uploaded successfully!")
-    # You can add code here to process the file as needed
+    st.success("File uploaded successfully!")
+    # Add your file processing logic here
 
 # Initialize or retrieve chat history
 if 'messages' not in st.session_state:
@@ -78,12 +74,16 @@ if user_input:
     st.session_state.messages.append({"role": "user", "content": user_input})
 
     # Placeholder for Gemini API call
-    # Replace the following code with actual API call to Gemini
-    # response = gemini_client.generate_response(user_input, file_data=file_data)
-    # bot_reply = response['text']
+    # Ensure API passkey is provided before making an API call
+    if api_passkey:
+        # Replace the following with an actual API call using the provided passkey
+        # response = gemini_client.generate_response(user_input, file_data=file_data, api_key=api_passkey)
+        # bot_reply = response['text']
 
-    # Simulated response (since Gemini API details are unavailable)
-    bot_reply = f"I'm here to help, but I need access to the Gemini API to provide responses. (This is a placeholder message.)"
+        # Simulated response (since Gemini API details are unavailable)
+        bot_reply = f"Simulated response: I'm here to help! (API key received: {api_passkey[:4]}...)"  # Show part of the key for debugging
+    else:
+        bot_reply = "Please provide your API passkey in the sidebar to enable chatbot functionality."
 
     # Add bot response to chat history
     st.session_state.messages.append({"role": "bot", "content": bot_reply})
