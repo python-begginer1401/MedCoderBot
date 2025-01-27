@@ -6,7 +6,7 @@ from gtts import gTTS
 from io import BytesIO
 import textwrap
 
-st.set_page_config(page_title='ChatGPT-like Chatbot', page_icon=':robot_face:', layout='wide')
+st.set_page_config(page_title='MedCoderBot', page_icon=':robot_face:', layout='wide')
 
 
 # Initialize Google Gemini model
